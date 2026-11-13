@@ -8,6 +8,12 @@ DevHouse AI connects voice AI, lead handling, CRM workflows, booking, follow-up,
 
 **Live product:** https://www.devhouseai.com
 
+## Status
+
+- **Owner:** ELISON INC (DevHouse AI business unit)
+- **Type:** Public, curated portfolio. It holds sanitized samples, not the production codebase.
+- **State:** Maintained. The latest change was on 2026-08-23 (public-boundary PR checklist). The repository is complete as a portfolio, so updates are infrequent.
+
 ## Start here
 
 - **[Product & engineering case study](./docs/CASE-STUDY.md)** — problem, architecture decisions, ownership, and verification philosophy
@@ -56,6 +62,8 @@ This public repository focuses on the parts that best demonstrate the engineerin
 
 ## Selected stack
 
+These are the technologies used by the private production system. They are not dependencies of this repository, which only uses TypeScript and Vitest.
+
 - Astro
 - React
 - TypeScript
@@ -74,12 +82,16 @@ This public repository focuses on the parts that best demonstrate the engineerin
 
 The public samples are intentionally small, but they are executable rather than static snippets.
 
+You need Node.js. CI uses Node 22.
+
 ```bash
 npm install
-npm run verify
+npm run verify      # typecheck + tests
+npm run typecheck   # tsc --noEmit
+npm test            # vitest run
 ```
 
-`verify` runs TypeScript type-checking and the Vitest suite covering provider normalization, consent classification, and fallback behavior.
+`verify` runs TypeScript type-checking and the Vitest suite covering provider normalization, consent classification, and fallback behavior. There is no build step and no lockfile is committed. The [Portfolio CI](./.github/workflows/portfolio-ci.yml) workflow runs `npm run verify` on every push and pull request to `main`.
 
 ## What I owned
 
@@ -107,6 +119,7 @@ samples/
   reliability/              # Provider fallback / failure handling
 tests/                      # Executable tests for public samples
 .github/workflows/          # Public portfolio verification CI
+.github/pull_request_template.md # Public-boundary PR checklist
 SECURITY.md                 # Responsible disclosure guidance
 NOTICE.md                   # Portfolio-use copyright notice
 ```
@@ -132,3 +145,5 @@ Source in this repository is published for inspection and evaluation. No open-so
 ---
 
 **DevHouse AI · ELISON INC**
+
+Last reviewed: 2026-11-12
